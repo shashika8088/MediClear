@@ -1,75 +1,117 @@
-# MedCare
+# 🩺 MedCare — AI-Powered Medical Report Simplifier
 
-**Description:** MedCare is a small AI-powered web app built with Vite + TypeScript that demonstrates a simple medical report input and analysis UI. The app uses the Gemini API for LLM functionality via `services/geminiService.ts` to process user input and show results.
+MedCare is a modern, multilingual web application that simplifies complex medical reports using AI.  
+Built with **Vite + React + TypeScript**, powered by the **Gemini API**, and enhanced with **Text-to-Speech** and **full multilingual translation**.
 
+Users can upload or paste a medical report, and the app generates:
 
-**Highlights:**
-
-- **Frontend:** `Vite` + `React` + `TypeScript` (`index.tsx`, `App.tsx`)
-- **Components:** `components/ReportInput.tsx`, `components/ReportResult.tsx`, `components/Icons.tsx`
-- **Service:** `services/geminiService.ts` — wrapper to call the Gemini API
-
-**Prerequisites**
-
-- Node.js (recommended 16+ or latest LTS)
-- A Gemini API key (set as `GEMINI_API_KEY`)
-
-## Quick Start
-
-1. Install dependencies:
-
-```pwsh
-npm install
-```
-
-2. Create an environment file and set your Gemini API key:
-
-```pwsh
-# create a file named .env.local in the project root
-# add the line below with your real key
-GEMINI_API_KEY=your_api_key_here
-```
-
-3. Run the development server:
-
-```pwsh
-npm run dev
-```
-
-4. Open the app in your browser at the address printed by Vite (usually `http://localhost:5173`).
-
-## Available Scripts
-
-- `npm run dev` : Start local dev server
-- `npm run build`: Build production assets
-- `npm run preview`: Preview production build locally
-
-## Environment Variables
-
-- `GEMINI_API_KEY` : API key used by `services/geminiService.ts` to call the Gemini LLM.
-
-## Project Structure (top-level)
-
-- `index.html` : App entry HTML
-- `index.tsx`, `App.tsx` : React entry and root component
-- `components/` : UI components
-- `services/geminiService.ts` : LLM integration
-- `types.ts` : shared TypeScript types
-- `vite.config.ts`, `tsconfig.json`, `package.json` : build and config files
-
-## Notes & Next Steps
-
-- This repo is a small demo; if you plan to deploy, make sure to keep the API key secret and use a server-side proxy or function to avoid exposing it in client code.
-- Improve error handling and add tests for `geminiService` for production readiness.
-
-## Contributing
-
-Feel free to open issues or pull requests. For small improvements (docs, typing, UI tweaks), open a draft PR and I'll review.
-
-## License
-
-This project does not include a license file. Add one (for example `MIT`) if you plan to open-source it.
+- A simplified summary  
+- Key takeaways  
+- A glossary of medical terms  
+- A disclaimer  
+- A translated version of the entire report (English, Hindi, Kannada, Tamil)  
+- A voice readout (speech) of the summary or full report  
 
 ---
 
-If you want, I can also: add a `.env.example`, wire a server-side proxy for the API key, or commit these changes for you.
+## ✨ Features
+
+### 🔍 AI-Powered Medical Report Analysis  
+- Processes text or report images  
+- Generates a friendly, easy-to-understand explanation  
+- Extracts key points & glossary definitions  
+- Removes personal information automatically  
+
+### 🌐 Multilingual Full Report Translation  
+Translates **ALL SECTIONS** of the report:
+- Summary  
+- Key Takeaways  
+- Glossary  
+- Disclaimer  
+
+Supported languages:
+- **English**
+- **Hindi**
+- **Kannada**
+- **Tamil**
+
+### 🔊 Text-to-Speech (Voice Readout)
+- Reads aloud the **summary** or the **entire report**
+- Uses browser’s native Web Speech API  
+- Supports all available device voices for selected language  
+
+### 🖼 Supports Text or Image Input
+- Upload a screenshot / photo of a medical report  
+- Paste raw medical text  
+
+### ⚡ Fast & Lightweight
+- Powered by Vite  
+- Smooth, responsive React UI  
+- Instant rendering  
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend:**  
+- React  
+- TypeScript  
+- TailwindCSS  
+- Vite  
+
+**AI / Backend:**  
+- Google Gemini API  
+- Rich system prompts  
+- JSON response parsing  
+
+**Browser APIs:**
+- Web Speech API (Text-to-Speech)
+
+**Deployment:**  
+- **Vercel**
+
+---
+
+## 📂 Project Structure
+├── components/
+│ ├── ReportInput.tsx
+│ ├── ReportResult.tsx
+│ └── Icons.tsx
+├── services/
+│ └── geminiService.ts
+├── types.ts
+├── App.tsx
+├── index.tsx
+public/
+index.html
+vite.config.ts
+tsconfig.json
+package.json
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+```sh
+git clone https://github.com/shashika8088/MediClear.git
+cd MediClear
+```
+
+### 2. Install Dependencies
+
+```sh
+npm install
+```
+### 3.Create Environment File
+```
+
+Inside the project root, create .env.local:
+
+GEMINI_API_KEY=your_api_key_here
+```
+### 4.Run Development Server
+```
+npm run dev
+
+
