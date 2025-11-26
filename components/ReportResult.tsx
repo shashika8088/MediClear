@@ -16,6 +16,30 @@ const ReportResult: React.FC<ReportResultProps> = ({ report, onReset }) => {
   const [translatedReport, setTranslatedReport] = useState<SimplifiedReport>(report);
   const [isTranslating, setIsTranslating] = useState(false);
 
+  // Text-to-Speech
+const speakText = (text: string, lang: string) => {
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  const langMap: Record<string, string> = {
+    English: "en-IN",
+    Hindi: "hi-IN",
+    Kannada: "kn-IN",
+    Tamil: "ta-IN",
+  };
+
+  utterance.lang = langMap[lang] || "en-IN";
+  utterance.rate = 1;
+  utterance.pitch = 1;
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance);
+};
+
+const stopSpeaking = () => {
+  window.speechSynthesis.cancel();
+};
+
+
   const handleLanguageChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const lang = e.target.value;
     setLanguage(lang);
@@ -118,6 +142,48 @@ ${translatedReport.glossary.map(g => `${g.term}: ${g.definition}`).join('\n')}
                 </span>
               )}
             </div>
+
+            {/* Speak Controls */}
+<div className="flex items-center gap-3 mb-3">
+  <button
+    onClick={() => speakText(translatedReport.summary, language)}
+    className="px-3 py-1.5 text-sm bg-medical-600 text-white rounded-md hover:bg-medical-700"
+  >
+    🔊 Speak Summary
+  </button>
+
+  <button
+    onClick={() =>
+      speakText(
+        `
+        ${translatedReport.summary}.
+        Key takeaways:
+        ${translatedReport.keyPoints.join(". ")}.
+
+        Glossary:
+        ${translatedReport.glossary
+          .map(item => `${item.term}: ${item.definition}`)
+          .join(". ")}.
+
+        Disclaimer:
+        ${translatedReport.disclaimer}
+        `,
+        language
+      )
+    }
+    className="px-3 py-1.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+  >
+    🔊 Speak Full Report
+  </button>
+
+  <button
+    onClick={stopSpeaking}
+    className="px-3 py-1.5 text-sm bg-red-500 text-white rounded-md hover:bg-red-600"
+  >
+    ⏹ Stop
+  </button>
+</div>
+
 
             <div className="text-slate-700 leading-relaxed bg-slate-50 p-5 rounded-lg border border-slate-100 text-lg">
               {translatedReport.summary}
