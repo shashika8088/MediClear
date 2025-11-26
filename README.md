@@ -104,10 +104,8 @@ cd MediClear
 npm install
 ```
 ### 3.Create Environment File
-```
-
 Inside the project root, create .env.local:
-
+```
 GEMINI_API_KEY=your_api_key_here
 ```
 ### 4.Run Development Server
