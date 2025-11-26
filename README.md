@@ -73,6 +73,7 @@ Supported languages:
 ---
 
 ## 📂 Project Structure
+```
 ├── components/
 │ ├── ReportInput.tsx
 │ ├── ReportResult.tsx
@@ -89,6 +90,7 @@ tsconfig.json
 package.json
 
 ---
+```
 
 ## 🚀 Getting Started
 
